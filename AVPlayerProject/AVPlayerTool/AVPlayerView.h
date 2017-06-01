@@ -32,7 +32,7 @@
 // 正在缓冲
 - (void)avPlayerView:(AVPlayerView *)playerView didloadingRange:(CGFloat)loadingDuration;
 
-// 没有了缓冲数据
+// 缓冲数据为空
 - (void)avPlayerViewPlaybackBufferIsEmpty:(AVPlayerView *)playerView;
 
 @end
@@ -43,18 +43,26 @@
 
 @property (nonatomic, strong) AVPlayerLayer             *playerLayer;
 
-@property (nonatomic, assign) CGFloat                 totalDuration;
+@property (nonatomic, assign) CGFloat          totalDuration;
 
 
 - (instancetype)initWithURL:(NSURL *)videoURL frame:(CGRect)frame;
 
 - (instancetype)initWithURL:(NSURL *)videoURL frame:(CGRect)frame isCancache:(BOOL)isCancache;
 
-// 开始播放
+/**
+ * 开始播放
+ */
 - (void)play;
-// 暂停播放
+
+/**
+ * 开始播放
+ */
 - (void)pause;
-// 停止播放
+
+/**
+ * 停止播放
+ */
 - (void)stopPlay;
 
 /*

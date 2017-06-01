@@ -6,22 +6,22 @@
 //  Copyright © 2017年 yangze. All rights reserved.
 //
 
-#import "AVAssetResourceLoaderTask.h"
+#import "HYAssetResourceDownloadTask.h"
 #import "AVFileTool.h"
 
-@interface AVAssetResourceLoaderTask ()<NSURLSessionDelegate>
+@interface HYAssetResourceDownloadTask ()<NSURLSessionDelegate>
 
 
-@property (nonatomic, strong) NSURLSession           *session;
-@property (nonatomic, strong) NSURLSessionTask           *sessionTask;
+@property (nonatomic, strong) NSURLSession                  *session;
+@property (nonatomic, strong) NSURLSessionTask              *sessionTask;
 
 
-@property (nonatomic, strong) NSFileHandle           *fileHandle;
+@property (nonatomic, strong) NSFileHandle                  *fileHandle;
 
 @end
 
 
-@implementation AVAssetResourceLoaderTask
+@implementation HYAssetResourceDownloadTask
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -70,8 +70,8 @@
         [self.fileHandle seekToEndOfFile];
         //  写入文件
         [self.fileHandle writeData:data];
-        if ([self.delegate respondsToSelector:@selector(requestTask:didReceiveData:downloadOffset:)]) {
-            [self.delegate requestTask:self didReceiveData:data downloadOffset:_cacheLength];
+        if ([self.delegate respondsToSelector:@selector(assetResourceDownLoadTask:didReceiveData:downloadOffset:)]) {
+            [self.delegate assetResourceDownLoadTask:self didReceiveData:data downloadOffset:_cacheLength];
         }
     }
 }
@@ -80,9 +80,13 @@
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
     
     //可以缓存则保存文件
-    if ([self.delegate respondsToSelector:@selector(requestTask:didCompleteWithError:)]) {
-        [self.delegate requestTask:self didCompleteWithError:nil];
+    if ([self.delegate respondsToSelector:@selector(assetResourceDownLoadTask:didCompleteWithError:)]) {
+        [self.delegate assetResourceDownLoadTask:self didCompleteWithError:nil];
     }
+}
+
+- (void)cancel {
+    [self.sessionTask cancel];
 }
 
 

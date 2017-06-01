@@ -28,7 +28,6 @@
  */
 + (AudioPlayer *)shareInstance;
 
-
 /**
  *  @author 李诚, 15-06-24 16:06:17
  *

@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B64F48491ED7BF330008F174 /* AVAssetResourceLoaderServer.m in Sources */ = {isa = PBXBuildFile; fileRef = B64F48481ED7BF330008F174 /* AVAssetResourceLoaderServer.m */; };
-		B64F484C1ED7C11A0008F174 /* AVAssetResourceLoaderTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B64F484B1ED7C11A0008F174 /* AVAssetResourceLoaderTask.m */; };
-		B64F48511ED7C2F20008F174 /* URFileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B64F48501ED7C2F20008F174 /* URFileTool.m */; };
-		B64F48541ED7DB3D0008F174 /* AVFileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B64F48531ED7DB3D0008F174 /* AVFileTool.m */; };
+		B63BF54E1EDFC8910095EE20 /* AVPlayerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63BF54D1EDFC8910095EE20 /* AVPlayerTableViewController.m */; };
+		B63BF55B1EDFEC370095EE20 /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B63BF5521EDFEC370095EE20 /* AudioPlayer.m */; };
+		B63BF55C1EDFEC370095EE20 /* AVFileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B63BF5541EDFEC370095EE20 /* AVFileTool.m */; };
+		B63BF55D1EDFEC370095EE20 /* AVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B63BF5561EDFEC370095EE20 /* AVPlayerView.m */; };
+		B63BF55E1EDFEC370095EE20 /* HYAssetResourceDownloadTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B63BF5581EDFEC370095EE20 /* HYAssetResourceDownloadTask.m */; };
+		B63BF55F1EDFEC370095EE20 /* HYAssetResourceLoaderServer.m in Sources */ = {isa = PBXBuildFile; fileRef = B63BF55A1EDFEC370095EE20 /* HYAssetResourceLoaderServer.m */; };
 		B676107C1ED6C90600DFF702 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B676107B1ED6C90600DFF702 /* main.m */; };
 		B676107F1ED6C90600DFF702 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B676107E1ED6C90600DFF702 /* AppDelegate.m */; };
 		B67610821ED6C90600DFF702 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B67610811ED6C90600DFF702 /* ViewController.m */; };
@@ -19,8 +21,6 @@
 		B676108A1ED6C90700DFF702 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B67610881ED6C90700DFF702 /* LaunchScreen.storyboard */; };
 		B67610951ED6C90700DFF702 /* AVPlayerProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B67610941ED6C90700DFF702 /* AVPlayerProjectTests.m */; };
 		B67610A01ED6C90700DFF702 /* AVPlayerProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B676109F1ED6C90700DFF702 /* AVPlayerProjectUITests.m */; };
-		B67610B21ED6C95300DFF702 /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B67610AF1ED6C95300DFF702 /* AudioPlayer.m */; };
-		B67610B31ED6C95300DFF702 /* AVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B67610B11ED6C95300DFF702 /* AVPlayerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,14 +41,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B64F48471ED7BF330008F174 /* AVAssetResourceLoaderServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVAssetResourceLoaderServer.h; sourceTree = "<group>"; };
-		B64F48481ED7BF330008F174 /* AVAssetResourceLoaderServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVAssetResourceLoaderServer.m; sourceTree = "<group>"; };
-		B64F484A1ED7C11A0008F174 /* AVAssetResourceLoaderTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVAssetResourceLoaderTask.h; sourceTree = "<group>"; };
-		B64F484B1ED7C11A0008F174 /* AVAssetResourceLoaderTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVAssetResourceLoaderTask.m; sourceTree = "<group>"; };
-		B64F484F1ED7C2F20008F174 /* URFileTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URFileTool.h; sourceTree = "<group>"; };
-		B64F48501ED7C2F20008F174 /* URFileTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URFileTool.m; sourceTree = "<group>"; };
-		B64F48521ED7DB3D0008F174 /* AVFileTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVFileTool.h; sourceTree = "<group>"; };
-		B64F48531ED7DB3D0008F174 /* AVFileTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVFileTool.m; sourceTree = "<group>"; };
+		B63BF54C1EDFC8910095EE20 /* AVPlayerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVPlayerTableViewController.h; sourceTree = "<group>"; };
+		B63BF54D1EDFC8910095EE20 /* AVPlayerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVPlayerTableViewController.m; sourceTree = "<group>"; };
+		B63BF5511EDFEC370095EE20 /* AudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlayer.h; sourceTree = "<group>"; };
+		B63BF5521EDFEC370095EE20 /* AudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayer.m; sourceTree = "<group>"; };
+		B63BF5531EDFEC370095EE20 /* AVFileTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVFileTool.h; sourceTree = "<group>"; };
+		B63BF5541EDFEC370095EE20 /* AVFileTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVFileTool.m; sourceTree = "<group>"; };
+		B63BF5551EDFEC370095EE20 /* AVPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVPlayerView.h; sourceTree = "<group>"; };
+		B63BF5561EDFEC370095EE20 /* AVPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVPlayerView.m; sourceTree = "<group>"; };
+		B63BF5571EDFEC370095EE20 /* HYAssetResourceDownloadTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYAssetResourceDownloadTask.h; sourceTree = "<group>"; };
+		B63BF5581EDFEC370095EE20 /* HYAssetResourceDownloadTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYAssetResourceDownloadTask.m; sourceTree = "<group>"; };
+		B63BF5591EDFEC370095EE20 /* HYAssetResourceLoaderServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYAssetResourceLoaderServer.h; sourceTree = "<group>"; };
+		B63BF55A1EDFEC370095EE20 /* HYAssetResourceLoaderServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYAssetResourceLoaderServer.m; sourceTree = "<group>"; };
 		B67610771ED6C90600DFF702 /* AVPlayerProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AVPlayerProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B676107B1ED6C90600DFF702 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B676107D1ED6C90600DFF702 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -65,10 +69,6 @@
 		B676109B1ED6C90700DFF702 /* AVPlayerProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AVPlayerProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B676109F1ED6C90700DFF702 /* AVPlayerProjectUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AVPlayerProjectUITests.m; sourceTree = "<group>"; };
 		B67610A11ED6C90700DFF702 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B67610AE1ED6C95300DFF702 /* AudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlayer.h; sourceTree = "<group>"; };
-		B67610AF1ED6C95300DFF702 /* AudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayer.m; sourceTree = "<group>"; };
-		B67610B01ED6C95300DFF702 /* AVPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVPlayerView.h; sourceTree = "<group>"; };
-		B67610B11ED6C95300DFF702 /* AVPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVPlayerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +96,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B63BF5501EDFEC370095EE20 /* AVPlayerTool */ = {
+			isa = PBXGroup;
+			children = (
+				B63BF5511EDFEC370095EE20 /* AudioPlayer.h */,
+				B63BF5521EDFEC370095EE20 /* AudioPlayer.m */,
+				B63BF5531EDFEC370095EE20 /* AVFileTool.h */,
+				B63BF5541EDFEC370095EE20 /* AVFileTool.m */,
+				B63BF5551EDFEC370095EE20 /* AVPlayerView.h */,
+				B63BF5561EDFEC370095EE20 /* AVPlayerView.m */,
+				B63BF5571EDFEC370095EE20 /* HYAssetResourceDownloadTask.h */,
+				B63BF5581EDFEC370095EE20 /* HYAssetResourceDownloadTask.m */,
+				B63BF5591EDFEC370095EE20 /* HYAssetResourceLoaderServer.h */,
+				B63BF55A1EDFEC370095EE20 /* HYAssetResourceLoaderServer.m */,
+			);
+			path = AVPlayerTool;
+			sourceTree = "<group>";
+		};
 		B676106E1ED6C90600DFF702 = {
 			isa = PBXGroup;
 			children = (
@@ -119,9 +136,7 @@
 		B67610791ED6C90600DFF702 /* AVPlayerProject */ = {
 			isa = PBXGroup;
 			children = (
-				B64F484F1ED7C2F20008F174 /* URFileTool.h */,
-				B64F48501ED7C2F20008F174 /* URFileTool.m */,
-				B67610AD1ED6C95300DFF702 /* audio */,
+				B63BF5501EDFEC370095EE20 /* AVPlayerTool */,
 				B676107D1ED6C90600DFF702 /* AppDelegate.h */,
 				B676107E1ED6C90600DFF702 /* AppDelegate.m */,
 				B67610801ED6C90600DFF702 /* ViewController.h */,
@@ -131,12 +146,8 @@
 				B67610881ED6C90700DFF702 /* LaunchScreen.storyboard */,
 				B676108B1ED6C90700DFF702 /* Info.plist */,
 				B676107A1ED6C90600DFF702 /* Supporting Files */,
-				B64F48471ED7BF330008F174 /* AVAssetResourceLoaderServer.h */,
-				B64F48481ED7BF330008F174 /* AVAssetResourceLoaderServer.m */,
-				B64F484A1ED7C11A0008F174 /* AVAssetResourceLoaderTask.h */,
-				B64F484B1ED7C11A0008F174 /* AVAssetResourceLoaderTask.m */,
-				B64F48521ED7DB3D0008F174 /* AVFileTool.h */,
-				B64F48531ED7DB3D0008F174 /* AVFileTool.m */,
+				B63BF54C1EDFC8910095EE20 /* AVPlayerTableViewController.h */,
+				B63BF54D1EDFC8910095EE20 /* AVPlayerTableViewController.m */,
 			);
 			path = AVPlayerProject;
 			sourceTree = "<group>";
@@ -165,17 +176,6 @@
 				B67610A11ED6C90700DFF702 /* Info.plist */,
 			);
 			path = AVPlayerProjectUITests;
-			sourceTree = "<group>";
-		};
-		B67610AD1ED6C95300DFF702 /* audio */ = {
-			isa = PBXGroup;
-			children = (
-				B67610AE1ED6C95300DFF702 /* AudioPlayer.h */,
-				B67610AF1ED6C95300DFF702 /* AudioPlayer.m */,
-				B67610B01ED6C95300DFF702 /* AVPlayerView.h */,
-				B67610B11ED6C95300DFF702 /* AVPlayerView.m */,
-			);
-			path = audio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,14 +315,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B67610821ED6C90600DFF702 /* ViewController.m in Sources */,
-				B64F48511ED7C2F20008F174 /* URFileTool.m in Sources */,
+				B63BF55C1EDFEC370095EE20 /* AVFileTool.m in Sources */,
+				B63BF54E1EDFC8910095EE20 /* AVPlayerTableViewController.m in Sources */,
 				B676107F1ED6C90600DFF702 /* AppDelegate.m in Sources */,
+				B63BF55D1EDFEC370095EE20 /* AVPlayerView.m in Sources */,
 				B676107C1ED6C90600DFF702 /* main.m in Sources */,
-				B67610B21ED6C95300DFF702 /* AudioPlayer.m in Sources */,
-				B64F48541ED7DB3D0008F174 /* AVFileTool.m in Sources */,
-				B64F484C1ED7C11A0008F174 /* AVAssetResourceLoaderTask.m in Sources */,
-				B64F48491ED7BF330008F174 /* AVAssetResourceLoaderServer.m in Sources */,
-				B67610B31ED6C95300DFF702 /* AVPlayerView.m in Sources */,
+				B63BF55E1EDFEC370095EE20 /* HYAssetResourceDownloadTask.m in Sources */,
+				B63BF55B1EDFEC370095EE20 /* AudioPlayer.m in Sources */,
+				B63BF55F1EDFEC370095EE20 /* HYAssetResourceLoaderServer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

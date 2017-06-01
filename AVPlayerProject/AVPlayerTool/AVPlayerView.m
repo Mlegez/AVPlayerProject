@@ -10,7 +10,7 @@
 
 
 #import "AVPlayerView.h"
-#import "AVAssetResourceLoaderServer.h"
+#import "HYAssetResourceLoaderServer.h"
 #import "AVFileTool.h"
 
 @interface AVPlayerView (){
@@ -25,19 +25,17 @@
 @property (nonatomic, strong) AVPlayer                  *player;
 
 //当前播放时长
-@property (nonatomic, assign) CGFloat               currentTime;
+@property (nonatomic, assign) CGFloat                   currentTime;
 
-@property (nonatomic, assign) BOOL                  isPlay;
+@property (nonatomic, assign) BOOL                      isPlay;
 
-@property (nonatomic, strong) AVAssetResourceLoaderServer           *resourceLoader;
-
+@property (nonatomic, strong) HYAssetResourceLoaderServer           *resourceLoader;
+// 缓存文件路径
 @property (nonatomic, strong) NSString                              *cacheFilePath;
 // 加载URL
 @property (nonatomic, strong) NSURL           *loadURL;
-
 // 是否需要缓存
 @property (nonatomic, assign) BOOL            isCancache;
-
 // 初始frame
 @property (nonatomic, assign) CGRect           initializationFrame;
 
@@ -103,7 +101,7 @@
 - (void)configPlayView {
     
     AVURLAsset *movieAsset = [AVURLAsset URLAssetWithURL:self.loadURL options:nil];
-    self.resourceLoader = [[AVAssetResourceLoaderServer alloc] init];
+    self.resourceLoader = [[HYAssetResourceLoaderServer alloc] init];
     [movieAsset.resourceLoader setDelegate:self.resourceLoader queue:dispatch_get_main_queue()];
     self.playerItem = [AVPlayerItem playerItemWithAsset:movieAsset];
     // 添加监听

@@ -6,26 +6,26 @@
 //  Copyright © 2017年 yangze. All rights reserved.
 //
 
-#import "AVAssetResourceLoaderServer.h"
-#import "AVAssetResourceLoaderTask.h"
+#import "HYAssetResourceLoaderServer.h"
+#import "HYAssetResourceDownloadTask.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "AVFileTool.h"
 
 
-@interface AVAssetResourceLoaderServer ()<AVAssetResourceLoaderTaskDelegate>
+@interface HYAssetResourceLoaderServer ()<HYAssetResourceDownloadTaskDelegate>
 
 @property (nonatomic, strong) NSMutableArray                        *pendingRequests;
 
-@property (nonatomic, strong) AVAssetResourceLoaderTask             *task;
+@property (nonatomic, strong) HYAssetResourceDownloadTask             *task;
 
-@property (nonatomic, strong) NSURL                             *urlString;
+@property (nonatomic, strong) NSURL                                 *urlString;
 
-// 是否重复请求
-@property (nonatomic, assign) BOOL                              isResetRequest;
+// 是否重复请求  如果重复请求了数据 缓存数据会不完整 不能保存到本地
+@property (nonatomic, assign) BOOL                                  isResetRequest;
 
 @end
 
-@implementation AVAssetResourceLoaderServer
+@implementation HYAssetResourceLoaderServer
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -46,6 +46,7 @@
 
 - (void)resourceLoader:(AVAssetResourceLoader *)resourceLoader didCancelLoadingRequest:(AVAssetResourceLoadingRequest *)loadingRequest {
     [self.pendingRequests removeObject:loadingRequest];
+    [self.task cancel];
 }
 
 //处理每一次的播放器数据请求
@@ -55,7 +56,7 @@
     NSRange range = NSMakeRange((NSUInteger)loadingRequest.dataRequest.currentOffset, NSUIntegerMax);
     
     if (!self.task) {
-        self.task = [[AVAssetResourceLoaderTask alloc] init];
+        self.task = [[HYAssetResourceDownloadTask alloc] init];
         self.task.delegate = self;
         [self.task setUrl:currentUrl offset:0];
     } else {
@@ -75,15 +76,18 @@
 
 #pragma mark ============== AVAssetResourceLoaderTaskDelegate ============
 // 正在下载数据
-- (void)requestTask:(AVAssetResourceLoaderTask *)requesttask didReceiveData:(NSData *)data downloadOffset:(NSInteger)offset{
+- (void)assetResourceDownLoadTask:(HYAssetResourceDownloadTask *)requesttask didReceiveData:(NSData *)data downloadOffset:(NSInteger)offset{
     NSLog(@"下载中");
     [self processPendingRequests];
 }
 
 // 下载完成
-- (void)requestTask:(AVAssetResourceLoaderTask *)requestTask didCompleteWithError:(NSError *)error {
+- (void)assetResourceDownLoadTask:(HYAssetResourceDownloadTask *)requestTask didCompleteWithError:(NSError *)error {
     if (error) {
         NSLog(@"下载失败");
+        if ([self.delegate respondsToSelector:@selector(assetResourceLoaderServer:didCacheError:)]) {
+            [self.delegate assetResourceLoaderServer:self didCacheError:error];
+        }
     }else {
         if (!self.isResetRequest) {
             NSLog(@"下载完成");

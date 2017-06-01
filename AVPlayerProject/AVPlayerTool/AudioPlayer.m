@@ -9,6 +9,8 @@
 #import "AudioPlayer.h"
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import "HYAssetResourceLoaderServer.h"
+#import "AVFileTool.h"
 
 static AudioPlayer  *_audioPlayer = nil;
 
@@ -18,6 +20,9 @@ static AudioPlayer  *_audioPlayer = nil;
 @property (nonatomic, strong) AVPlayer                  *player;
 
 @property (nonatomic, strong) NSURL                     *audioPath;
+
+// 缓存路径
+@property (nonatomic, strong) NSString                  *cacheFilePath;
 
 @end
 
@@ -36,7 +41,6 @@ static AudioPlayer  *_audioPlayer = nil;
  *
  *  TODO:创建音频播放单例
  *
- *  @return
  */
 + (AudioPlayer *)shareInstance {
     @synchronized(self) {
