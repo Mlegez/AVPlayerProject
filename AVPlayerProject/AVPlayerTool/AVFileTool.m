@@ -16,8 +16,10 @@
 // 返回文件缓存路径
 + (NSString *)getLocalVideoFilePath:(NSURL *)url {
     
+    NSString *suffix = [[[url lastPathComponent] pathExtension] lowercaseString];
+    
     NSString *fileUrl = [self getFilePathStringWithUrl:url];
-    NSString *path = [NSString stringWithFormat:@"%@/%@.mp4",[self getCacheFilePath:DIRECTORY_NAME],fileUrl];
+    NSString *path = [NSString stringWithFormat:@"%@/%@.%@",[self getCacheFilePath:DIRECTORY_NAME],fileUrl,suffix];
     return path;
 }
 
@@ -69,9 +71,10 @@
 // 返回临时文件路径
 + (NSString *)getTempFilePath:(NSURL *)url {
     
+    NSString *suffix = [[url lastPathComponent] pathExtension];
     NSString *fileUrl = [self getFilePathStringWithUrl:url];
     NSString *tmpDir = NSTemporaryDirectory();
-    NSString *path = [NSString stringWithFormat:@"%@%@/%@.mp4",tmpDir,DIRECTORY_NAME,fileUrl];
+    NSString *path = [NSString stringWithFormat:@"%@%@/%@.%@",tmpDir,DIRECTORY_NAME,fileUrl,suffix];
     return path;
 }
 

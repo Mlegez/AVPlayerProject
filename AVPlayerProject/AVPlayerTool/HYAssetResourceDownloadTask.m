@@ -62,7 +62,6 @@
     self.totalLength = response.expectedContentLength;
 }
 
-
 // 接收到服务器返回数据的时候调用,会调用多次
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data{
     if (data.length > 0) {
@@ -80,6 +79,7 @@
 //请求完成会调用该方法，请求失败则error有值
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
     
+    NSLog(@"%lu",(unsigned long)self.cacheLength);
     //可以缓存则保存文件
     if ([self.delegate respondsToSelector:@selector(assetResourceDownLoadTask:didCompleteWithError:)]) {
         [self.delegate assetResourceDownLoadTask:self didCompleteWithError:nil];

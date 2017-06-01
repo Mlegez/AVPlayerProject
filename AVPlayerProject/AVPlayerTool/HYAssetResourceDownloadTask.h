@@ -13,7 +13,7 @@
 
 @optional
 // 接受到数据
--(void)assetResourceDownLoadTask:(HYAssetResourceDownloadTask *)requesttask didReceiveData:(NSData *)data downloadOffset:(NSInteger)offset;
+-(void)assetResourceDownLoadTask:(HYAssetResourceDownloadTask *)requesttask didReceiveData:(NSData *)data downloadOffset:(long long)offset;
 
 // 下载完成 或 失败
 - (void)assetResourceDownLoadTask:(HYAssetResourceDownloadTask *)requestTask didCompleteWithError:(NSError *)error ;
@@ -25,7 +25,7 @@
 
 - (void)setUrl:(NSURL *)url offset:(NSUInteger)offSet ;
 // 已经下载的数据长度
-@property (nonatomic, assign) NSUInteger            cacheLength;
+@property (nonatomic, assign) long long            cacheLength;
 
 @property (nonatomic, strong) NSURL                 *url;
 // 偏移量

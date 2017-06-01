@@ -93,7 +93,7 @@ static AudioPlayer  *_audioPlayer = nil;
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
     
     AVURLAsset *movieAsset = [AVURLAsset URLAssetWithURL:self.loadURL options:nil];
-    self.resourceLoader = [[HYAssetResourceLoaderServer alloc] init];
+    self.resourceLoader = [[HYAssetResourceLoaderServer alloc] initWithMinetype:AssetResourceTypeAudio];
     [movieAsset.resourceLoader setDelegate:self.resourceLoader queue:dispatch_get_main_queue()];
     self.playerItem = [AVPlayerItem playerItemWithAsset:movieAsset];
     
@@ -118,6 +118,7 @@ static AudioPlayer  *_audioPlayer = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
     [self.player.currentItem removeObserver:self forKeyPath:@"loadedTimeRanges"];
     [self.player.currentItem removeObserver:self forKeyPath:@"status"];
+    [self.player.currentItem removeObserver:self forKeyPath:@"playbackBufferEmpty"];
 }
 
 /**
@@ -186,7 +187,7 @@ static AudioPlayer  *_audioPlayer = nil;
     __weak typeof(self) weakSelf = self;
     [self.player addPeriodicTimeObserverForInterval:CMTimeMake(1, 24) queue:NULL usingBlock:^(CMTime time) {
         CGFloat currentSecond = CMTimeGetSeconds(time);// 计算当前在第几秒
-        
+        NSLog(@"正在播放 %f",currentSecond);
         if (weakSelf.progressBlock) {
             weakSelf.progressBlock(currentSecond);
         }

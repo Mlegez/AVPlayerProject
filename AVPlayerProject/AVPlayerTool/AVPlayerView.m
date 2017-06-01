@@ -106,7 +106,7 @@
 - (void)configPlayView {
     
     AVURLAsset *movieAsset = [AVURLAsset URLAssetWithURL:self.loadURL options:nil];
-    self.resourceLoader = [[HYAssetResourceLoaderServer alloc] init];
+    self.resourceLoader = [[HYAssetResourceLoaderServer alloc] initWithMinetype:AssetResourceTypeVideo];
     [movieAsset.resourceLoader setDelegate:self.resourceLoader queue:dispatch_get_main_queue()];
     self.playerItem = [AVPlayerItem playerItemWithAsset:movieAsset];
     // 添加监听

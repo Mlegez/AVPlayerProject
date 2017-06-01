@@ -23,15 +23,39 @@
 // 是否重复请求  如果重复请求了数据 缓存数据会不完整 不能保存到本地
 @property (nonatomic, assign) BOOL                                  isResetRequest;
 
+@property (nonatomic, assign) AssetResourceType                     assetType;
+
+@property (nonatomic, strong) NSString                              *mineTypeString;
+
+
+
 @end
 
 @implementation HYAssetResourceLoaderServer
+
+- (instancetype)initWithMinetype:(AssetResourceType)type{
+    if (self = [super init]) {
+        self.assetType = type;
+        self.pendingRequests = @[].mutableCopy;
+    }
+    return self;
+}
 
 - (instancetype)init {
     if (self = [super init]) {
         self.pendingRequests = @[].mutableCopy;
     }
     return self;
+}
+
+- (NSString *)mineTypeString {
+   NSString *mineString = @"";
+    if (self.assetType == AssetResourceTypeAudio) {
+        mineString = @"audio/mp3";
+    }else{
+      mineString = @"video/mp4";
+    }
+    return mineString;
 }
 
 #pragma mark ================= AVAssetResourceLoaderDelegate ==============
@@ -76,7 +100,7 @@
 
 #pragma mark ============== AVAssetResourceLoaderTaskDelegate ============
 // 正在下载数据
-- (void)assetResourceDownLoadTask:(HYAssetResourceDownloadTask *)requesttask didReceiveData:(NSData *)data downloadOffset:(NSInteger)offset{
+- (void)assetResourceDownLoadTask:(HYAssetResourceDownloadTask *)requesttask didReceiveData:(NSData *)data downloadOffset:(long long)offset{
     NSLog(@"下载中");
     [self processPendingRequests];
 }
@@ -89,7 +113,7 @@
             [self.delegate assetResourceLoaderServer:self didCacheError:error];
         }
     }else {
-        if (!self.isResetRequest) {
+        if (!self.isResetRequest && self.task.cacheLength == self.task.totalLength) {
             NSLog(@"下载完成");
             // 下载完成 且数据完整 移动资源文件到缓存目录
             [AVFileTool copyFileToLocalWithUrl:self.currentURL];
@@ -118,10 +142,12 @@
     [self.pendingRequests removeObjectsInArray:[requestsCompleted copy]];
 }
 
+
+
 // 为每个请求加上数据长度和文件类型
 - (void)fillInContentInformation:(AVAssetResourceLoadingContentInformationRequest * _Nonnull)contentInformationRequest{
     if (contentInformationRequest) {
-        NSString *mimetype = @"video/mp4";
+        NSString *mimetype = self.mineTypeString;
         CFStringRef contentType = UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, (__bridge CFStringRef _Nonnull)(mimetype), NULL);
         // 要接受任意范围byte 需要设置为YES
         contentInformationRequest.byteRangeAccessSupported = YES;
@@ -155,9 +181,9 @@
     
     // 0 - 15  15 - 1300  1200 - 1500
     // 未读取的byte
-    NSInteger unreadBytes = self.task.cacheLength - (NSInteger)startOffset;
+    long long unreadBytes = self.task.cacheLength - startOffset;
     unreadBytes = MAX(0, unreadBytes);
-    NSUInteger numberOfBytesToRespondWith = MIN((NSUInteger)dataRequest.requestedLength, unreadBytes);
+    NSUInteger numberOfBytesToRespondWith = MIN((NSUInteger)dataRequest.requestedLength, (NSUInteger)unreadBytes);
     // 将此次请求到的数据回传给播放器播放
     [dataRequest respondWithData:[fileData subdataWithRange:NSMakeRange((NSUInteger)startOffset, (NSUInteger)numberOfBytesToRespondWith)]];
     
