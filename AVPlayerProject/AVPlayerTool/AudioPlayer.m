@@ -16,17 +16,44 @@ static AudioPlayer  *_audioPlayer = nil;
 
 @interface AudioPlayer ()
 
-@property (nonatomic, strong) AVPlayerItem              *playerItem;
-@property (nonatomic, strong) AVPlayer                  *player;
+@property (nonatomic, strong) AVPlayerItem                          *playerItem;
+@property (nonatomic, strong) AVPlayer                              *player;
 
-@property (nonatomic, strong) NSURL                     *audioPath;
-
-// 缓存路径
-@property (nonatomic, strong) NSString                  *cacheFilePath;
+@property (nonatomic, strong) HYAssetResourceLoaderServer           *resourceLoader;
+// 缓存文件路径
+@property (nonatomic, strong) NSString                              *cacheFilePath;
+// 初始URL
+@property (nonatomic, strong) NSURL                                 *audioURL;
+// 用于加载请求的URL
+@property (nonatomic, strong) NSURL                                 *loadURL;
 
 @end
 
 @implementation AudioPlayer
+
+// 当前资源缓存数据
+- (NSString *)cacheFilePath {
+    
+    return  [AVFileTool getLocalVideoFilePath:self.audioURL];
+}
+
+// 用于请求资源的URL
+- (NSURL *)loadURL {
+    
+    if ([self.audioURL.scheme isEqualToString:@"file"]) {
+        return self.audioURL;
+    }
+    
+    NSURL *URL;
+    NSData *cacheData = [NSData dataWithContentsOfFile:self.cacheFilePath];
+    if (cacheData && cacheData.length > 0) {
+        URL = [NSURL fileURLWithPath:self.cacheFilePath];
+    }else {
+        
+        URL = [AVFileTool getMutableCompent:self.audioURL];
+    }
+    return URL;
+}
 
 - (void)dealloc{
     
@@ -65,10 +92,15 @@ static AudioPlayer  *_audioPlayer = nil;
     //音频播放一定要加上这句，否则声音很小
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
     
-    AVURLAsset *audioAsset = [AVURLAsset URLAssetWithURL:self.audioPath options:nil];
-    self.playerItem = [AVPlayerItem playerItemWithAsset:audioAsset];
+    AVURLAsset *movieAsset = [AVURLAsset URLAssetWithURL:self.loadURL options:nil];
+    self.resourceLoader = [[HYAssetResourceLoaderServer alloc] init];
+    [movieAsset.resourceLoader setDelegate:self.resourceLoader queue:dispatch_get_main_queue()];
+    self.playerItem = [AVPlayerItem playerItemWithAsset:movieAsset];
+    
     [self.playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];// 监听status属性
     [self.playerItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];// 监听loadedTimeRanges属性
+    // 缓冲数据为空
+    [self.playerItem addObserver:self forKeyPath:@"playbackBufferEmpty" options:NSKeyValueObservingOptionNew context:nil];
     
     self.player = [AVPlayer playerWithPlayerItem:self.playerItem];
     
@@ -76,7 +108,7 @@ static AudioPlayer  *_audioPlayer = nil;
 }
 
 - (void)playAudioWithFileURL:(NSURL *)fileURL {
-    self.audioPath = fileURL;
+    self.audioURL = fileURL;
     // 移除监听
     [self removeObserver];
     [self configPlayer];
@@ -131,10 +163,22 @@ static AudioPlayer  *_audioPlayer = nil;
             }
         }
     } else if ([keyPath isEqualToString:@"loadedTimeRanges"]) {
-//                NSTimeInterval timeInterval = [self availableDuration];// 计算缓冲进度
-//                CMTime duration = self.playerItem.duration;
-//                CGFloat totalDuration = CMTimeGetSeconds(duration);
-//                CGFloat cache = timeInterval / totalDuration;
+        //持续加载
+        NSArray *array = playerItem.loadedTimeRanges;
+        //本次缓冲时间范围
+        CMTimeRange timeRange = [array.firstObject CMTimeRangeValue];
+        CGFloat startSeconds = CMTimeGetSeconds(timeRange.start);
+        CGFloat durationSeconds = CMTimeGetSeconds(timeRange.duration);
+        //缓冲总长度
+        CGFloat totalBuffer = startSeconds + durationSeconds;
+        if (self.didLoadingRange) {
+            self.didLoadingRange(totalBuffer);
+        }
+    }else if ([keyPath isEqualToString:@"playbackBufferEmpty"]) {
+        // 缓冲数据为空
+        if (self.loadingBufferIsEmpty) {
+            self.loadingBufferIsEmpty(playerItem.playbackBufferEmpty);
+        }
     }
 }
 
@@ -166,7 +210,7 @@ static AudioPlayer  *_audioPlayer = nil;
 }
 
 - (void)seekToTime:(CGFloat)duation {
-
+    
     CMTime dragedCMTime = CMTimeMake(0, 1);
     [self.player seekToTime:dragedCMTime completionHandler:^(BOOL finish){
     }];
@@ -178,5 +222,19 @@ static AudioPlayer  *_audioPlayer = nil;
     CGFloat totalTime = CMTimeGetSeconds(duration);
     return totalTime;
 }
+
+// 清除当前缓存文件
+- (void)clearCurrentCachecFile {
+    
+    [AVFileTool removeFilePath:self.audioURL];
+}
+
+- (void)clearAllCacheFile {
+
+}
+
+
+
+
 
 @end

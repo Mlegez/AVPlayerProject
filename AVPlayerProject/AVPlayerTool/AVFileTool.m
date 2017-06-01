@@ -14,14 +14,15 @@
 @implementation AVFileTool
 
 // 返回文件缓存路径
-+ (NSString *)getLocalVideoFilePath:(NSString *)url {
++ (NSString *)getLocalVideoFilePath:(NSURL *)url {
     
-    NSString *path = [NSString stringWithFormat:@"%@/%@.mp4",[self getCacheFilePath:DIRECTORY_NAME],[self stringToMD5Value:url]];
+    NSString *fileUrl = [self getFilePathStringWithUrl:url];
+    NSString *path = [NSString stringWithFormat:@"%@/%@.mp4",[self getCacheFilePath:DIRECTORY_NAME],fileUrl];
     return path;
 }
 
 // 创建缓存文件
-+ (void)creatLocalVideoFile:(NSString *)url {
++ (void)creatLocalVideoFile:(NSURL *)url {
     
     [self createDirectory:[NSString stringWithFormat:@"%@",[self getCacheFilePath:DIRECTORY_NAME]]];
     // 创建一个空的文件到沙盒中
@@ -29,7 +30,7 @@
 }
 
 // 下载完成 将临时目录的文件拷贝到 本地缓存目录中
-+ (void)copyFileToLocalWithUrl:(NSString *)url {
++ (void)copyFileToLocalWithUrl:(NSURL *)url {
     NSFileManager *fm = [NSFileManager defaultManager];
     
     NSString *fromFilePath = [self getTempFilePath:url];
@@ -46,18 +47,19 @@
     NSString * cacheFilePath = [self getLocalVideoFilePath:url];
     [fm copyItemAtPath:fromFilePath toPath:cacheFilePath error:&error];
     
-    [fm removeItemAtPath:toFile error:&error];
+    [fm removeItemAtPath:fromFilePath error:&error];
 }
 
 // 删除本地缓存文件
-+ (void)removeFilePath:(NSString *)url {
++ (void)removeFilePath:(NSURL *)url {
     if ([[NSFileManager defaultManager] fileExistsAtPath:[self getLocalVideoFilePath:url]]) {
         [[NSFileManager defaultManager] removeItemAtPath:[self getLocalVideoFilePath:url] error:nil];
     }
 }
 
+#pragma mark - 临时文件
 // 创建临时文件
-+ (void)creatTempFileWithUrl:(NSString *)url {
++ (void)creatTempFileWithUrl:(NSURL *)url {
     
     NSString *tmpDir =  NSTemporaryDirectory();
     [self createDirectory:[NSString stringWithFormat:@"%@%@",tmpDir,DIRECTORY_NAME]];
@@ -65,15 +67,16 @@
 }
 
 // 返回临时文件路径
-+ (NSString *)getTempFilePath:(NSString *)url {
++ (NSString *)getTempFilePath:(NSURL *)url {
     
+    NSString *fileUrl = [self getFilePathStringWithUrl:url];
     NSString *tmpDir = NSTemporaryDirectory();
-    NSString *path = [NSString stringWithFormat:@"%@%@/%@.mp4",tmpDir,DIRECTORY_NAME,[self stringToMD5Value:url]];
+    NSString *path = [NSString stringWithFormat:@"%@%@/%@.mp4",tmpDir,DIRECTORY_NAME,fileUrl];
     return path;
 }
 
 // 删除临时文件
-+ (void)deleteTempFilePathWithUrl:(NSString *)url {
++ (void)deleteTempFilePathWithUrl:(NSURL *)url {
     if ([[NSFileManager defaultManager] fileExistsAtPath:[self getTempFilePath:url]]) {
         [[NSFileManager defaultManager] removeItemAtPath:[self getTempFilePath:url] error:nil];
     }
@@ -94,6 +97,8 @@
     urlConponents.scheme = @"NSURLCompontents";
     return urlConponents.URL;
 }
+
+
 
 //将string转换成MD5格式数据,需引进库<CommonCrypto/CommonDigest.h>
 + (NSString *)stringToMD5Value:(NSString *)string {
@@ -133,6 +138,13 @@
         return NO;
     }
     return [fm createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
+}
+
+// 返回用于保存本地数据的URL字符
++ (NSString *)getFilePathStringWithUrl:(NSURL *)url {
+    NSURLComponents *urlComponents = [[NSURLComponents alloc] initWithURL:url resolvingAgainstBaseURL:NO];
+    urlComponents.scheme = @"http";
+    return [self stringToMD5Value:urlComponents.URL.absoluteString];
 }
 
 

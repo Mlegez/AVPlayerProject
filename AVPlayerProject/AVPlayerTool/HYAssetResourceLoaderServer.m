@@ -18,7 +18,7 @@
 
 @property (nonatomic, strong) HYAssetResourceDownloadTask             *task;
 
-@property (nonatomic, strong) NSURL                                 *urlString;
+@property (nonatomic, strong) NSURL                                 *currentURL;
 
 // 是否重复请求  如果重复请求了数据 缓存数据会不完整 不能保存到本地
 @property (nonatomic, assign) BOOL                                  isResetRequest;
@@ -37,7 +37,7 @@
 #pragma mark ================= AVAssetResourceLoaderDelegate ==============
 - (BOOL)resourceLoader:(AVAssetResourceLoader *)resourceLoader shouldWaitForLoadingOfRequestedResource:(AVAssetResourceLoadingRequest *)loadingRequest {
     
-    self.urlString = loadingRequest.request.URL;
+    self.currentURL = loadingRequest.request.URL;
     [self.pendingRequests addObject:loadingRequest];
     [self dealWithLoadingRequest:loadingRequest];
     
@@ -92,9 +92,9 @@
         if (!self.isResetRequest) {
             NSLog(@"下载完成");
             // 下载完成 且数据完整 移动资源文件到缓存目录
-            [AVFileTool copyFileToLocalWithUrl:[AVFileTool getMutableHTTPUrl:self.urlString].absoluteString];
+            [AVFileTool copyFileToLocalWithUrl:self.currentURL];
         }else {
-            [AVFileTool deleteTempFilePathWithUrl:[AVFileTool getMutableHTTPUrl:self.urlString].absoluteString];
+            [AVFileTool deleteTempFilePathWithUrl:self.currentURL];
         }
     }
 }
@@ -150,7 +150,7 @@
         return NO;
     
     // 读取数据
-    NSString *path = [AVFileTool getTempFilePath:[AVFileTool getMutableHTTPUrl:self.urlString].absoluteString];
+    NSString *path = [AVFileTool getTempFilePath:self.currentURL];
     NSData *fileData = [NSData dataWithContentsOfFile:path options:NSDataReadingMappedIfSafe error:nil];
     
     // 0 - 15  15 - 1300  1200 - 1500

@@ -24,6 +24,7 @@
 @property (nonatomic, strong) AVPlayerItem              *playerItem;
 @property (nonatomic, strong) AVPlayer                  *player;
 
+@property (nonatomic, strong) AVPlayerLayer             *playerLayer;
 //当前播放时长
 @property (nonatomic, assign) CGFloat                   currentTime;
 
@@ -46,11 +47,15 @@
 // 当前资源缓存数据
 - (NSString *)cacheFilePath {
     
-    return  [AVFileTool getLocalVideoFilePath:[AVFileTool getMutableHTTPUrl:self.videoURL].absoluteString];
+    return  [AVFileTool getLocalVideoFilePath:self.videoURL];
 }
 
 // 用于请求资源的URL
 - (NSURL *)loadURL {
+    
+    if ([self.videoURL.scheme isEqualToString:@"file"]) {
+        return self.videoURL;
+    }
     NSURL *URL = self.videoURL;
     if (self.isCancache) {
         NSData *cacheData = [NSData dataWithContentsOfFile:self.cacheFilePath];
@@ -175,14 +180,11 @@
     AVPlayerItem *playerItem = (AVPlayerItem *)object;
     if ([keyPath isEqualToString:@"status"]) {
         if ([playerItem status] == AVPlayerStatusReadyToPlay) {
-            //获取视频总长度
-            CMTime duration = self.playerItem.duration;
-            self.totalDuration = CMTimeGetSeconds(duration);
             // 监听播放状态
             [self monitoringPlayStatus:self.playerItem];
             
             if (self.delegate && [self.delegate respondsToSelector:@selector(avPlayerView:didFinishLoadingBaseInfo:)]) {
-                [self.delegate avPlayerView:self didFinishLoadingBaseInfo:CMTimeGetSeconds(duration)];
+                [self.delegate avPlayerView:self didFinishLoadingBaseInfo:self.totalDuration];
             }
             
         } else if ([playerItem status] == AVPlayerStatusFailed) {
@@ -299,6 +301,14 @@
     [superView addSubview:self];
     self.frame = self.initializationFrame;
 }
+
+#pragma mark - Get Method
+- (CGFloat)totalDuration {
+    CMTime duration = self.playerItem.duration;// 获取视频总长度
+    CGFloat totalTime = CMTimeGetSeconds(duration);
+    return totalTime;
+}
+
 
 
 @end

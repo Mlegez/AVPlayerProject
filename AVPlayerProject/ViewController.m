@@ -26,7 +26,8 @@
     
     [super viewDidLoad];
     
-    self.playerView = [[AVPlayerView alloc] initWithURL:[NSURL URLWithString:@"http://120.25.226.186:32812/resources/videos/minion_01.mp4"] frame:CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.width * 9/16) isCancache:YES];
+    
+    self.playerView = [[AVPlayerView alloc] initWithURL:[NSURL URLWithString:@"http://120.25.226.186:32812/resources/videos/minion_01.mp4"] frame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.width * 9/16) isCancache:YES];
     self.playerView.delegate = self;
     [self.view addSubview:self.playerView];
     

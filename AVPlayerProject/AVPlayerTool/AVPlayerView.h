@@ -41,10 +41,7 @@
 
 @property (nonatomic, weak) id<AVPlayerViewDelegate>    delegate;
 
-@property (nonatomic, strong) AVPlayerLayer             *playerLayer;
-
-@property (nonatomic, assign) CGFloat          totalDuration;
-
+@property (nonatomic, assign, readonly) CGFloat          totalDuration;
 
 - (instancetype)initWithURL:(NSURL *)videoURL frame:(CGRect)frame;
 

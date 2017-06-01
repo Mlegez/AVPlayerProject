@@ -12,16 +12,21 @@
 
 @interface AudioPlayer : NSObject
 
-@property (nonatomic, assign) BOOL                      cancelPlayAllAudio;
-
-@property (nonatomic, assign, readonly) NSTimeInterval   currentTime;
-
+// 总播放时长
 @property (nonatomic, assign, readonly) CGFloat         duration;
+// 开始播放
+@property (nonatomic, copy) void                      (^beginBlock)(void);
+// 播放错误
+@property (nonatomic, copy) void                      (^errorBlock)(void);
+// 播放完成
+@property (nonatomic, copy) void                      (^completionBlock)(void);
+// 播放进度
+@property (nonatomic, copy) void                      (^progressBlock)(CGFloat currentTime);
+// 缓冲。。。
+@property (nonatomic, copy) void                      (^didLoadingRange)(CGFloat totalBuffer);
+// 缓冲为空时回调
+@property (nonatomic, copy) void                      (^loadingBufferIsEmpty)(BOOL bufferIsEmpty);
 
-@property (nonatomic, strong) void                      (^beginBlock)(void);
-@property (nonatomic, strong) void                      (^errorBlock)(void);
-@property (nonatomic, strong) void                      (^completionBlock)(void);
-@property (nonatomic, strong) void                      (^progressBlock)(CGFloat currentTime);
 
 /**
  *  TODO:创建音频播放单例
@@ -51,6 +56,10 @@
  */
 - (void)pause;
 
+// 设置播放进度
 - (void)seekToTime:(CGFloat)duation ;
+
+// 清除当前缓存文件
+- (void)clearCurrentCachecFile ;
 
 @end

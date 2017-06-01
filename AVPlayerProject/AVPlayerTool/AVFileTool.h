@@ -11,25 +11,25 @@
 @interface AVFileTool : NSObject
 
 // 返回文件缓存路径
-+ (NSString *)getLocalVideoFilePath:(NSString *)url;
++ (NSString *)getLocalVideoFilePath:(NSURL *)url;
 
 // 创建缓存文件
-+ (void)creatLocalVideoFile:(NSString *)url ;
++ (void)creatLocalVideoFile:(NSURL *)url ;
 
 // 下载完成 将临时目录的文件拷贝到 本地缓存目录中
-+ (void)copyFileToLocalWithUrl:(NSString *)url ;
++ (void)copyFileToLocalWithUrl:(NSURL *)url ;
 
 // 删除本地缓存文件
-+ (void)removeFilePath:(NSString *)url ;
++ (void)removeFilePath:(NSURL *)url ;
 
 // 创建临时文件
-+ (void)creatTempFileWithUrl:(NSString *)url ;
++ (void)creatTempFileWithUrl:(NSURL *)url ;
 
 // 返回临时文件路径
-+ (NSString *)getTempFilePath:(NSString *)url ;
++ (NSString *)getTempFilePath:(NSURL *)url ;
 
 // 删除临时文件
-+ (void)deleteTempFilePathWithUrl:(NSString *)url ;
++ (void)deleteTempFilePathWithUrl:(NSURL *)url ;
 
 // 返回正确格式URL
 + (NSURL *)getMutableHTTPUrl:(NSURL *)url ;

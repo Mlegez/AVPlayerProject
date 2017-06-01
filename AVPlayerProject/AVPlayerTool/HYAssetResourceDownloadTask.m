@@ -15,7 +15,7 @@
 @property (nonatomic, strong) NSURLSession                  *session;
 @property (nonatomic, strong) NSURLSessionTask              *sessionTask;
 
-
+// 文件句柄
 @property (nonatomic, strong) NSFileHandle                  *fileHandle;
 
 @end
@@ -53,10 +53,11 @@
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition))completionHandler {
     
     // 创建一个用于接收资源的空文件
-    [AVFileTool creatTempFileWithUrl:[AVFileTool getMutableHTTPUrl:_url].absoluteString];
+    [AVFileTool creatTempFileWithUrl:_url];
     // 创建文件句柄
-    self.fileHandle = [NSFileHandle fileHandleForWritingAtPath:[AVFileTool getTempFilePath:[AVFileTool getMutableHTTPUrl:_url].absoluteString]];
+    self.fileHandle = [NSFileHandle fileHandleForWritingAtPath:[AVFileTool getTempFilePath:_url]];
     completionHandler(NSURLSessionResponseAllow);
+    NSLog(@"%lld",response.expectedContentLength);
     // 获取资源总大小
     self.totalLength = response.expectedContentLength;
 }
