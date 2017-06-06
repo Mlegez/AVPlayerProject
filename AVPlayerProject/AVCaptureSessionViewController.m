@@ -13,8 +13,6 @@
 #import "ViewController.h"
 #import <CoreImage/CoreImage.h>
 
-#import "CarLamp.h"
-
 @interface AVCaptureSessionViewController ()<AVCaptureFileOutputRecordingDelegate>
 
 @property (nonatomic, strong) AVCaptureSession                  *captureSession;

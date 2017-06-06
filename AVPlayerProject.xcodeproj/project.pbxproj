@@ -14,9 +14,6 @@
 		B63BF55E1EDFEC370095EE20 /* HYAssetResourceDownloadTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B63BF5581EDFEC370095EE20 /* HYAssetResourceDownloadTask.m */; };
 		B63BF55F1EDFEC370095EE20 /* HYAssetResourceLoaderServer.m in Sources */ = {isa = PBXBuildFile; fileRef = B63BF55A1EDFEC370095EE20 /* HYAssetResourceLoaderServer.m */; };
 		B64EC5E91EE558B000AE0FE8 /* HYAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = B64EC5E81EE558B000AE0FE8 /* HYAttributedString.m */; };
-		B64EC5EC1EE558E800AE0FE8 /* Traffic.m in Sources */ = {isa = PBXBuildFile; fileRef = B64EC5EB1EE558E800AE0FE8 /* Traffic.m */; };
-		B64EC5EF1EE558F700AE0FE8 /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = B64EC5EE1EE558F700AE0FE8 /* Car.m */; };
-		B64EC5F21EE5592400AE0FE8 /* CarLamp.m in Sources */ = {isa = PBXBuildFile; fileRef = B64EC5F11EE5592400AE0FE8 /* CarLamp.m */; };
 		B676107C1ED6C90600DFF702 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B676107B1ED6C90600DFF702 /* main.m */; };
 		B676107F1ED6C90600DFF702 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B676107E1ED6C90600DFF702 /* AppDelegate.m */; };
 		B67610821ED6C90600DFF702 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B67610811ED6C90600DFF702 /* ViewController.m */; };
@@ -61,12 +58,6 @@
 		B63BF55A1EDFEC370095EE20 /* HYAssetResourceLoaderServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYAssetResourceLoaderServer.m; sourceTree = "<group>"; };
 		B64EC5E71EE558B000AE0FE8 /* HYAttributedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYAttributedString.h; sourceTree = "<group>"; };
 		B64EC5E81EE558B000AE0FE8 /* HYAttributedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYAttributedString.m; sourceTree = "<group>"; };
-		B64EC5EA1EE558E800AE0FE8 /* Traffic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Traffic.h; sourceTree = "<group>"; };
-		B64EC5EB1EE558E800AE0FE8 /* Traffic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Traffic.m; sourceTree = "<group>"; };
-		B64EC5ED1EE558F700AE0FE8 /* Car.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Car.h; sourceTree = "<group>"; };
-		B64EC5EE1EE558F700AE0FE8 /* Car.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Car.m; sourceTree = "<group>"; };
-		B64EC5F01EE5592400AE0FE8 /* CarLamp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarLamp.h; sourceTree = "<group>"; };
-		B64EC5F11EE5592400AE0FE8 /* CarLamp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarLamp.m; sourceTree = "<group>"; };
 		B67610771ED6C90600DFF702 /* AVPlayerProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AVPlayerProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B676107B1ED6C90600DFF702 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B676107D1ED6C90600DFF702 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -178,12 +169,6 @@
 			isa = PBXGroup;
 			children = (
 				B676107B1ED6C90600DFF702 /* main.m */,
-				B64EC5EA1EE558E800AE0FE8 /* Traffic.h */,
-				B64EC5EB1EE558E800AE0FE8 /* Traffic.m */,
-				B64EC5ED1EE558F700AE0FE8 /* Car.h */,
-				B64EC5EE1EE558F700AE0FE8 /* Car.m */,
-				B64EC5F01EE5592400AE0FE8 /* CarLamp.h */,
-				B64EC5F11EE5592400AE0FE8 /* CarLamp.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -347,9 +332,6 @@
 				B67610821ED6C90600DFF702 /* ViewController.m in Sources */,
 				B64EC5E91EE558B000AE0FE8 /* HYAttributedString.m in Sources */,
 				B63BF55C1EDFEC370095EE20 /* AVFileTool.m in Sources */,
-				B64EC5EC1EE558E800AE0FE8 /* Traffic.m in Sources */,
-				B64EC5F21EE5592400AE0FE8 /* CarLamp.m in Sources */,
-				B64EC5EF1EE558F700AE0FE8 /* Car.m in Sources */,
 				B6E1B1951EE013860073CD8E /* AVCaptureSessionViewController.m in Sources */,
 				B63BF54E1EDFC8910095EE20 /* AVPlayerTableViewController.m in Sources */,
 				B676107F1ED6C90600DFF702 /* AppDelegate.m in Sources */,
