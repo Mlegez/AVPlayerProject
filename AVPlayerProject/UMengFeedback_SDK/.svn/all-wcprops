@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/ios/!svn/ver/1518/Fun_IOS/branches/Clipping/ThirdLib/UMengFeedback_SDK
+END
+UMFeedbackViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/ios/!svn/ver/1518/Fun_IOS/branches/Clipping/ThirdLib/UMengFeedback_SDK/UMFeedbackViewController.m
+END
+UMFeedbackViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/ios/!svn/ver/1518/Fun_IOS/branches/Clipping/ThirdLib/UMengFeedback_SDK/UMFeedbackViewController.h
+END
+UMFeedback.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/ios/!svn/ver/1518/Fun_IOS/branches/Clipping/ThirdLib/UMengFeedback_SDK/UMFeedback.h
+END
+libUMFeedback.a
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/ios/!svn/ver/1518/Fun_IOS/branches/Clipping/ThirdLib/UMengFeedback_SDK/libUMFeedback.a
+END
+UMRecorder.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/ios/!svn/ver/1518/Fun_IOS/branches/Clipping/ThirdLib/UMengFeedback_SDK/UMRecorder.h
+END
+UMOpenMacros.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/ios/!svn/ver/1518/Fun_IOS/branches/Clipping/ThirdLib/UMengFeedback_SDK/UMOpenMacros.h
+END

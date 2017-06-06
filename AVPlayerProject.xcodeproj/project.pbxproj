@@ -13,6 +13,10 @@
 		B63BF55D1EDFEC370095EE20 /* AVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B63BF5561EDFEC370095EE20 /* AVPlayerView.m */; };
 		B63BF55E1EDFEC370095EE20 /* HYAssetResourceDownloadTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B63BF5581EDFEC370095EE20 /* HYAssetResourceDownloadTask.m */; };
 		B63BF55F1EDFEC370095EE20 /* HYAssetResourceLoaderServer.m in Sources */ = {isa = PBXBuildFile; fileRef = B63BF55A1EDFEC370095EE20 /* HYAssetResourceLoaderServer.m */; };
+		B64EC5E91EE558B000AE0FE8 /* HYAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = B64EC5E81EE558B000AE0FE8 /* HYAttributedString.m */; };
+		B64EC5EC1EE558E800AE0FE8 /* Traffic.m in Sources */ = {isa = PBXBuildFile; fileRef = B64EC5EB1EE558E800AE0FE8 /* Traffic.m */; };
+		B64EC5EF1EE558F700AE0FE8 /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = B64EC5EE1EE558F700AE0FE8 /* Car.m */; };
+		B64EC5F21EE5592400AE0FE8 /* CarLamp.m in Sources */ = {isa = PBXBuildFile; fileRef = B64EC5F11EE5592400AE0FE8 /* CarLamp.m */; };
 		B676107C1ED6C90600DFF702 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B676107B1ED6C90600DFF702 /* main.m */; };
 		B676107F1ED6C90600DFF702 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B676107E1ED6C90600DFF702 /* AppDelegate.m */; };
 		B67610821ED6C90600DFF702 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B67610811ED6C90600DFF702 /* ViewController.m */; };
@@ -22,6 +26,7 @@
 		B67610951ED6C90700DFF702 /* AVPlayerProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B67610941ED6C90700DFF702 /* AVPlayerProjectTests.m */; };
 		B67610A01ED6C90700DFF702 /* AVPlayerProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B676109F1ED6C90700DFF702 /* AVPlayerProjectUITests.m */; };
 		B6E1B1901EE0071A0073CD8E /* 5ff6cd35b216a9087c12472075d4fc1d.MP3 in Resources */ = {isa = PBXBuildFile; fileRef = B6E1B18F1EE0071A0073CD8E /* 5ff6cd35b216a9087c12472075d4fc1d.MP3 */; };
+		B6E1B1951EE013860073CD8E /* AVCaptureSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E1B1941EE013860073CD8E /* AVCaptureSessionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +59,14 @@
 		B63BF5581EDFEC370095EE20 /* HYAssetResourceDownloadTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYAssetResourceDownloadTask.m; sourceTree = "<group>"; };
 		B63BF5591EDFEC370095EE20 /* HYAssetResourceLoaderServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYAssetResourceLoaderServer.h; sourceTree = "<group>"; };
 		B63BF55A1EDFEC370095EE20 /* HYAssetResourceLoaderServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYAssetResourceLoaderServer.m; sourceTree = "<group>"; };
+		B64EC5E71EE558B000AE0FE8 /* HYAttributedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYAttributedString.h; sourceTree = "<group>"; };
+		B64EC5E81EE558B000AE0FE8 /* HYAttributedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYAttributedString.m; sourceTree = "<group>"; };
+		B64EC5EA1EE558E800AE0FE8 /* Traffic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Traffic.h; sourceTree = "<group>"; };
+		B64EC5EB1EE558E800AE0FE8 /* Traffic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Traffic.m; sourceTree = "<group>"; };
+		B64EC5ED1EE558F700AE0FE8 /* Car.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Car.h; sourceTree = "<group>"; };
+		B64EC5EE1EE558F700AE0FE8 /* Car.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Car.m; sourceTree = "<group>"; };
+		B64EC5F01EE5592400AE0FE8 /* CarLamp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarLamp.h; sourceTree = "<group>"; };
+		B64EC5F11EE5592400AE0FE8 /* CarLamp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarLamp.m; sourceTree = "<group>"; };
 		B67610771ED6C90600DFF702 /* AVPlayerProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AVPlayerProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B676107B1ED6C90600DFF702 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B676107D1ED6C90600DFF702 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -71,6 +84,8 @@
 		B676109F1ED6C90700DFF702 /* AVPlayerProjectUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AVPlayerProjectUITests.m; sourceTree = "<group>"; };
 		B67610A11ED6C90700DFF702 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6E1B18F1EE0071A0073CD8E /* 5ff6cd35b216a9087c12472075d4fc1d.MP3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 5ff6cd35b216a9087c12472075d4fc1d.MP3; sourceTree = "<group>"; };
+		B6E1B1931EE013860073CD8E /* AVCaptureSessionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCaptureSessionViewController.h; sourceTree = "<group>"; };
+		B6E1B1941EE013860073CD8E /* AVCaptureSessionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCaptureSessionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +166,10 @@
 				B676107A1ED6C90600DFF702 /* Supporting Files */,
 				B63BF54C1EDFC8910095EE20 /* AVPlayerTableViewController.h */,
 				B63BF54D1EDFC8910095EE20 /* AVPlayerTableViewController.m */,
+				B6E1B1931EE013860073CD8E /* AVCaptureSessionViewController.h */,
+				B6E1B1941EE013860073CD8E /* AVCaptureSessionViewController.m */,
+				B64EC5E71EE558B000AE0FE8 /* HYAttributedString.h */,
+				B64EC5E81EE558B000AE0FE8 /* HYAttributedString.m */,
 			);
 			path = AVPlayerProject;
 			sourceTree = "<group>";
@@ -159,6 +178,12 @@
 			isa = PBXGroup;
 			children = (
 				B676107B1ED6C90600DFF702 /* main.m */,
+				B64EC5EA1EE558E800AE0FE8 /* Traffic.h */,
+				B64EC5EB1EE558E800AE0FE8 /* Traffic.m */,
+				B64EC5ED1EE558F700AE0FE8 /* Car.h */,
+				B64EC5EE1EE558F700AE0FE8 /* Car.m */,
+				B64EC5F01EE5592400AE0FE8 /* CarLamp.h */,
+				B64EC5F11EE5592400AE0FE8 /* CarLamp.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -272,6 +297,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = B676106E1ED6C90600DFF702;
 			productRefGroup = B67610781ED6C90600DFF702 /* Products */;
@@ -319,7 +345,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B67610821ED6C90600DFF702 /* ViewController.m in Sources */,
+				B64EC5E91EE558B000AE0FE8 /* HYAttributedString.m in Sources */,
 				B63BF55C1EDFEC370095EE20 /* AVFileTool.m in Sources */,
+				B64EC5EC1EE558E800AE0FE8 /* Traffic.m in Sources */,
+				B64EC5F21EE5592400AE0FE8 /* CarLamp.m in Sources */,
+				B64EC5EF1EE558F700AE0FE8 /* Car.m in Sources */,
+				B6E1B1951EE013860073CD8E /* AVCaptureSessionViewController.m in Sources */,
 				B63BF54E1EDFC8910095EE20 /* AVPlayerTableViewController.m in Sources */,
 				B676107F1ED6C90600DFF702 /* AppDelegate.m in Sources */,
 				B63BF55D1EDFEC370095EE20 /* AVPlayerView.m in Sources */,
@@ -479,6 +510,11 @@
 				DEVELOPMENT_TEAM = 82D64L9TTJ;
 				INFOPLIST_FILE = AVPlayerProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AVPlayerProject/UMengFeedback_SDK",
+					"$(PROJECT_DIR)/AVPlayerProject/UMengFeedback_SDK/UMOpus",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.AVPlayerProject.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -492,6 +528,11 @@
 				DEVELOPMENT_TEAM = 82D64L9TTJ;
 				INFOPLIST_FILE = AVPlayerProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AVPlayerProject/UMengFeedback_SDK",
+					"$(PROJECT_DIR)/AVPlayerProject/UMengFeedback_SDK/UMOpus",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.AVPlayerProject.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

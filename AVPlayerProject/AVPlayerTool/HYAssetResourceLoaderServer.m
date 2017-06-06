@@ -14,20 +14,17 @@
 
 @interface HYAssetResourceLoaderServer ()<HYAssetResourceDownloadTaskDelegate>
 
-@property (nonatomic, strong) NSMutableArray                        *pendingRequests;
+@property (nonatomic, strong) NSMutableArray                            *pendingRequests;
 
-@property (nonatomic, strong) HYAssetResourceDownloadTask             *task;
+@property (nonatomic, strong) HYAssetResourceDownloadTask             *downLoadTask;
 
-@property (nonatomic, strong) NSURL                                 *currentURL;
-
+@property (nonatomic, strong) NSURL                                     *currentURL;
 // 是否重复请求  如果重复请求了数据 缓存数据会不完整 不能保存到本地
-@property (nonatomic, assign) BOOL                                  isResetRequest;
-
-@property (nonatomic, assign) AssetResourceType                     assetType;
-
-@property (nonatomic, strong) NSString                              *mineTypeString;
-
-
+@property (nonatomic, assign) BOOL                                      isResetRequest;
+// video or audio
+@property (nonatomic, assign) AssetResourceType                         assetType;
+//
+@property (nonatomic, strong) NSString                                  *mineTypeString;
 
 @end
 
@@ -70,7 +67,7 @@
 
 - (void)resourceLoader:(AVAssetResourceLoader *)resourceLoader didCancelLoadingRequest:(AVAssetResourceLoadingRequest *)loadingRequest {
     [self.pendingRequests removeObject:loadingRequest];
-    [self.task cancel];
+    [self.downLoadTask cancel];
 }
 
 //处理每一次的播放器数据请求
@@ -78,20 +75,19 @@
     
     NSURL *currentUrl = loadingRequest.request.URL;
     NSRange range = NSMakeRange((NSUInteger)loadingRequest.dataRequest.currentOffset, NSUIntegerMax);
-    
-    if (!self.task) {
-        self.task = [[HYAssetResourceDownloadTask alloc] init];
-        self.task.delegate = self;
-        [self.task setUrl:currentUrl offset:0];
+    if (!self.downLoadTask) {
+        self.downLoadTask = [[HYAssetResourceDownloadTask alloc] init];
+        self.downLoadTask.delegate = self;
+        [self.downLoadTask setUrl:currentUrl offset:0];
     } else {
         // 如果新的rang的起始位置比当前缓存的位置还大，则重新按照range请求数据
         //  task.offset : 上次请求下载时的偏移量初始长度
         // cacheLength : 已经下载的长度
-        if (self.task.offset + self.task.cacheLength < range.location ||
+        if (self.downLoadTask.offset + self.downLoadTask.cacheLength < range.location ||
             // 如果往回拖也重新请求
-            range.location < self.task.offset) {
+            range.location < self.downLoadTask.offset) {
             self.isResetRequest = YES;
-            [self.task setUrl:currentUrl offset:range.location];
+            [self.downLoadTask setUrl:currentUrl offset:range.location];
         }else {
             [self processPendingRequests];
         }
@@ -113,7 +109,7 @@
             [self.delegate assetResourceLoaderServer:self didCacheError:error];
         }
     }else {
-        if (!self.isResetRequest && self.task.cacheLength == self.task.totalLength) {
+        if (!self.isResetRequest && self.downLoadTask.cacheLength == self.downLoadTask.totalLength) {
             NSLog(@"下载完成");
             // 下载完成 且数据完整 移动资源文件到缓存目录
             [AVFileTool copyFileToLocalWithUrl:self.currentURL];
@@ -153,7 +149,7 @@
         contentInformationRequest.byteRangeAccessSupported = YES;
         contentInformationRequest.contentType = CFBridgingRelease(contentType);
         // 视频总长度
-        contentInformationRequest.contentLength = self.task.totalLength;
+        contentInformationRequest.contentLength = self.downLoadTask.totalLength;
     }
 }
 
@@ -168,11 +164,11 @@
     startOffset = MAX(0, startOffset);
     
     // 播放器拖拽后大于已经缓存的数据
-    if (startOffset > self.task.cacheLength)
+    if (startOffset > self.downLoadTask.cacheLength)
         return NO;
     
     // 播放器拖拽后小于已经缓存的数据
-    if (startOffset < self.task.offset)
+    if (startOffset < self.downLoadTask.offset)
         return NO;
     
     // 读取数据
@@ -181,7 +177,7 @@
     
     // 0 - 15  15 - 1300  1200 - 1500
     // 未读取的byte
-    long long unreadBytes = self.task.cacheLength - startOffset;
+    long long unreadBytes = self.downLoadTask.cacheLength - startOffset;
     unreadBytes = MAX(0, unreadBytes);
     NSUInteger numberOfBytesToRespondWith = MIN((NSUInteger)dataRequest.requestedLength, (NSUInteger)unreadBytes);
     // 将此次请求到的数据回传给播放器播放
@@ -190,7 +186,7 @@
     long long endOffset = startOffset + dataRequest.requestedLength;
     
     // 此次请求的数据 已经全部下载完 返回YES
-    BOOL didRespondFully = self.task.cacheLength >= endOffset;
+    BOOL didRespondFully = self.downLoadTask.cacheLength >= endOffset;
     
     return didRespondFully;
 }

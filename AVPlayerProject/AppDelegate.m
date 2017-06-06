@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "AVPlayerTableViewController.h"
+#import "AVCaptureSessionViewController.h"
 
 @interface AppDelegate ()
 
@@ -22,8 +23,13 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    
-    AVPlayerTableViewController *vc = [[AVPlayerTableViewController alloc] init];
+    //1.加载storyboard,（注意：这里仅仅是加载名称为test的storyboard,并不会创建storyboard中的控制器和控件）
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    AVCaptureSessionViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"AVCaptureSessionViewController"];
+
+
+//    AVCaptureSessionViewController *vc = [[AVCaptureSessionViewController alloc] init];
+//    AVPlayerTableViewController *vc = [[AVPlayerTableViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
